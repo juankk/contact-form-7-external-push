@@ -23,7 +23,8 @@ class contact_form7_marketo_connector extends contact_form7_connector {
 	protected $form_fields = [
 		[
 			'title' => 'Program Name',
-			'name' => 'programName'
+			'name' => 'programName',
+			'description' => 'Mandatory field',
 		],
 		[
 			'title' => 'Lookup Field',
@@ -68,7 +69,7 @@ class contact_form7_marketo_connector extends contact_form7_connector {
 	}
 
 
-	public function submit( $contact_form, $result ) {
+	public function send_form( $contact_form, $result ) {
 		$submission = WPCF7_Submission::get_instance( );
 		$form_configuration = $this->get_form_configuration( $contact_form );
 		$posted_data = $submission->get_posted_data();

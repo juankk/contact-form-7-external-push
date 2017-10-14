@@ -17,10 +17,8 @@ class PushLeads{
   }
 	public function postData(){
 		$url = $this->host . "/rest/v1/leads/push.json?access_token=" . $this->getToken();
-		print_r($url);
 		$ch = curl_init($url);
 		$requestBody = $this->bodyBuilder();
-    print_r($requestBody);
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json','Content-Type: application/json'));
 		curl_setopt($ch, CURLOPT_POST, 1);
