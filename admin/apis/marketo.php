@@ -75,7 +75,7 @@ class contact_form7_marketo_connector extends contact_form7_connector {
 		$posted_data = $submission->get_posted_data();
 		$lead = new stdClass();
 		foreach ( $form_configuration as $key => $value ) {
-			if( empty($value) || in_array($key, ['programName','source', 'reason'], true )){
+			if( empty($value) || in_array($key, ['programName','source', 'reason', 'enable'], true )){
 				continue;
 			}
 			$tagged_text = new WPCF7_MailTaggedText($value);
@@ -90,7 +90,7 @@ class contact_form7_marketo_connector extends contact_form7_connector {
 		$upsert->source = $form_configuration['source'];
 		$upsert->reason = $form_configuration['reason'];
 		$upsert->input = array($lead);
-		$upsert->postData();
+		$response = $upsert->postData();
 		//TODO verify if the items was published to marketo correctly
 	}
 }

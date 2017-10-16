@@ -13,15 +13,15 @@ abstract class contact_form7_connector
       if ( $this->enabled() ) {
         add_filter( 'wpcf7_editor_panels', [$this, 'register_form_settings'] );
         add_action( 'save_post_wpcf7_contact_form', [$this, 'save_form_configuration'], 10, 3 );
-        add_action( 'wpcf7_submit', [$this, 'submit'], 9,2 );
+        add_action( 'wpcf7_submit', [$this, 'submit'], 9, 2 );
       }
   	}
 
     public function submit( $contact_form, $result ) {
-      $values = $this->get_form_configuration( $wpcf7_form );
+      $values = $this->get_form_configuration( $contact_form );
       //if the form is not enabled then it will not submit it.
       if ( 'true' === $values['enable'] ) {
-        $this->submit( $contact_form, $result );
+        $this->send_form( $contact_form, $result );
       }
     }
 
